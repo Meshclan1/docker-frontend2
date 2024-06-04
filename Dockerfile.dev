@@ -11,9 +11,12 @@ WORKDIR '/app'
 
 COPY package.json .
 
-# Install some dependencies
+# Install all the dependencies of package.json
 RUN npm install
+
+# copy command here COPIES everything else from our app and copies it into our set working directory which is a temporary container created during the image building process
 COPY . .
+
 
 # Default commands
 CMD ["npm", "run", "start"]
@@ -22,10 +25,10 @@ CMD ["npm", "run", "start"]
 # anytime we use 'docker build', it looks for  file called Dockerfile in our directory. We must therefore tweek our terminal command
 
 # docker build -f Dockerfile.dev .
-# docker run -p 5000:3000 21f71886e867531560e6e21d49f9 (image id)
 
 
-# docker build -f Dockerfile.dev meshclan1/frontend .
+# docker run -p 4000:3000 -v /app/node_modules -v "$(pwd):/app" (image id)
+# 21f71886e867531560e6e21d49f9
 
-# docker ps
-# docker exec -it (id) sh
+
+
