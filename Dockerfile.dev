@@ -1,0 +1,31 @@
+# .dev indicates Dockerfile is only to be used in 'development'. 'Dockerfile or Dockerfile.prod' to indicate 'production' mode
+
+
+# Specify a base image
+FROM node:16-alpine
+
+# workdir is /app directory to avoid any conflicts
+WORKDIR '/app'
+
+# For the "COPY" command, this copies everything in package.json to the current working directory '.' the first line is where we copy evertyhing, the second is where we copy everything into!
+
+COPY package.json .
+
+# Install some dependencies
+RUN npm install
+COPY . .
+
+# Default commands
+CMD ["npm", "run", "start"]
+
+
+# anytime we use 'docker build', it looks for  file called Dockerfile in our directory. We must therefore tweek our terminal command
+
+# docker build -f Dockerfile.dev .
+# docker run -p 5000:3000 21f71886e867531560e6e21d49f9 (image id)
+
+
+# docker build -f Dockerfile.dev meshclan1/frontend .
+
+# docker ps
+# docker exec -it (id) sh
