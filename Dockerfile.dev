@@ -27,8 +27,9 @@ CMD ["npm", "run", "start"]
 # docker build -f Dockerfile.dev .
 
 
+# Long form
 # docker run -p 4000:3000 -v /app/node_modules -v "$(pwd):/app" (image id)
 # 21f71886e867531560e6e21d49f9
 
 
-
+# Short form

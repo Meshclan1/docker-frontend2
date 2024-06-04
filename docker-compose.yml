@@ -1,0 +1,24 @@
+# '3' specifies the dockerfile version we are trying to use within the formatted file
+
+version: "3"
+
+# Services lists the services that are part of this Docker Compose application. Each service represents a container that will be managed by Docker Compose.
+
+# Web is the name of the service. In this case, it's called web. You can name this service anything relevant to your application.
+
+# Build specifies the build CONTEXT, which is the current directory (.) in our case. Docker will use this directory to find the source code and the specified Dockerfile.
+
+# dockerfile: Dockerfile.dev Specifies the name of the Dockerfile to use for building the image. In this case, it tells Docker to use Dockerfile.dev instead of the default Dockerfile.
+
+# volumes:: Specifies the volume mounts for the container. They allow us to persist data and share files between the host and the container.
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "4000:3000"
+    volumes:
+      - /app/node_modules
+      - .:/app
