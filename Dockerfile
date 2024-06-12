@@ -20,6 +20,12 @@ COPY . .
 RUN npm run build
 
 
-# docker build -f Dockerfile .
+# By putting in a second FROM command, it notes that the previous block is all complete
 
+FROM nginx 
+EXPOSE 80
+COPY --from=builder /app/build /usr/share/nginx/html
 
+# docker build .
+# docker run -p 8080:80 (id) - this is the default source port nginx uses (80) 
+# 62e0a9178c5ae
